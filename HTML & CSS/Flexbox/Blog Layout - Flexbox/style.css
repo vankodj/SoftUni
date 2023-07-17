@@ -1,0 +1,76 @@
+.page{
+    display: flex;
+    font-family: Goergia, serif;
+    justify-content: start;
+    flex-wrap: wrap;
+}
+body{
+    background-color: rgb(238, 238, 238);
+}
+img{
+    background-color: rgb(255, 255, 255);
+border: 4px solid black;
+padding: 6px;
+}
+.page main .first-section img{
+    float: right;
+    height: 200px;
+    margin: 0 10px 10px 10px;
+
+}
+
+.page main .second-section img {
+    float: left;
+    margin: 0 20px 20px 0;
+}
+blockquote{
+    font-family: Georgia, serif;
+    font-style: italic;
+    float: right;
+    width: 49%;
+    border-left: 3px solid rgb(0, 0, 0, 0.1);
+    color: rgb(0, 0, 0, 0.5);
+    padding-left: 12px;
+    box-sizing: border-box;
+   
+    margin-top: 0px;
+
+    
+}
+blockquote p{
+    margin-top: 0px;
+    margin-right: 0px;
+    padding-left: 12px;
+}
+.author-name{
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: rgb(0, 0, 0, 0.5);
+    box-sizing: border-box;
+    float: right;
+}
+header{
+    width: 100%;
+    text-transform: uppercase;
+    border-bottom: 2px solid black;
+    font-weight: bold;
+}
+main{
+    width: 70%;
+}
+
+
+.page aside {
+    width: 20%;
+    
+    float: right;
+    align-self: start;
+}
+.page aside section ul li a{
+    text-decoration: none;
+    color: rgb(0, 153, 0)
+}
+.page aside section{
+    margin-left: 48px;
+}
+
