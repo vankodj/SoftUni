@@ -1,0 +1,26 @@
+body{
+    display: flex;
+    padding: 60px;
+    box-sizing: border-box;
+    max-width: 1300px;
+}
+.gallery ul{
+    justify-content: space-between;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
+    
+    
+}
+.gallery ul li{
+    display: flex;
+   border: 6px solid black;
+   padding: 10px;
+   justify-content: center;
+   justify-items: center;
+   box-shadow: 0 0 20px rgba(0,0,0,0.4);
+}
+section ul li img {
+    object-fit: scale-down;
+}
+
