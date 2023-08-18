@@ -28,56 +28,63 @@ public class User extends BaseEntity{
         return email;
     }
 
-    public void setEmail(String email) {
+    public User setEmail(String email) {
         this.email = email;
+        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public void setPassword(String password) {
+    public User setPassword(String password) {
         this.password = password;
+        return this;
     }
 
     public String getFirstName() {
         return firstName;
     }
 
-    public void setFirstName(String firstName) {
+    public User setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
     public String getLastname() {
         return lastname;
     }
 
-    public void setLastname(String lastname) {
+    public User setLastname(String lastname) {
         this.lastname = lastname;
+        return this;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public User setActive(boolean active) {
         isActive = active;
+        return this;
     }
 
     public String getImageUrl() {
         return imageUrl;
     }
 
-    public void setImageUrl(String imageUrl) {
+    public User setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+        return this;
     }
 
     public List<UserRole> getUserRoles() {
         return userRoles;
     }
 
-    public void setUserRoles(List<UserRole> userRoles) {
+    public User setUserRoles(List<UserRole> userRoles) {
         this.userRoles = userRoles;
+        return this;
     }
 
     @Override

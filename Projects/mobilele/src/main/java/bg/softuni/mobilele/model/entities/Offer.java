@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 @Table(name = "offers")
 public class Offer extends BaseEntity{
 
+    @Column(nullable = false)
     private String description;
 
     @Enumerated(EnumType.STRING)
