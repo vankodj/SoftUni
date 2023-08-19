@@ -1,0 +1,147 @@
+@import url(https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css);
+body{
+    font-family: Helvetica, sans-serif;
+    background-color: #fff;
+}
+header{
+    display: flex;
+    justify-content: space-between;
+    margin: 0 auto;
+    padding: 24px;
+    width: 100%;
+   
+}
+div{
+    display: flex;
+  
+
+}
+header div p {
+    text-transform: uppercase;
+    padding-left: 12px;
+    margin-left: 12px;
+    align-self: center;
+    font-size: 12px;
+    color: #959b9d;
+    
+}
+div h1{
+    text-transform: uppercase;
+    border-right: 1px solid #959b9d;
+    padding-right:16px;
+    
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    
+}
+nav ul li a {
+    text-decoration: none;
+   
+    gap: 24px;
+}
+nav ul li{
+    margin-right: 8px;
+    background-color: #ececec;
+    padding: 16px;
+}
+.active{
+    background-color: #e24e2a;
+   }
+.active a{
+    color: #fff;
+}
+.hero img {
+    width: 100%;
+   object-fit: cover;
+
+}
+.hero .info{
+    background-color: #e24e2a;
+    padding: 24px 128px;
+    text-align: center;
+    margin: 0px;
+    color: #f5c4ab;
+}
+.icon-bar{
+    background-color: #383838;
+   
+}
+
+.hero p a{
+    color: #f9e6d6;
+   
+}
+.icon-bar .icon-list{
+    list-style: none;
+    display: flex;
+  
+}
+.icon-bar .icon-list li {
+   margin: 32px;
+   text-align: center;
+}
+.icon-bar .icon-list .icon {
+   background-color: #e24e2a;
+  display: inline-block;
+   align-items: center;
+   justify-content: center;
+   margin: 12px;
+   padding: 12px;
+   
+}
+.icon-bar .icon-list .icon i {
+font-size: 48px;
+color: #fff;
+}
+.icon-bar .icon-list li h2 {
+    color: #fff;
+    border-bottom: 1px solid #67675e;
+    padding-bottom: 12px;
+    margin-bottom: 12px;
+}
+.icon-bar .icon-list li div p{
+    color: #67675e;
+}
+.white-notes{
+    text-align: center;
+    vertical-align: middle;
+    padding: 4rem;
+}
+.white-notes p{
+    padding-bottom: 24px;
+}
+.white-notes button{
+    background-color: #1b9772;
+    color: #fff;
+    padding: 12px 32px;
+    font-size: 12px;
+    border: none;
+}
+.last ul{
+    display: flex;
+    list-style: none;
+    background-color: #383838;
+}
+.last .mini-section{
+    margin: 32px;
+    text-align: center;
+}
+
+.last ul .mini-section h2 {
+    color: #fff;
+    margin-bottom: 24px;
+    margin-top: 32px;
+}
+
+.last ul .mini-section p {
+    color: #67675e;
+    
+}
+footer {
+    padding: 5rem;
+    background-color: #1b9772;
+    text-align: center;
+    color: #383838;
+}
