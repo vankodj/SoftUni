@@ -1,0 +1,23 @@
+section{
+    display: flex;
+}
+.info{
+    width: 50%;
+    padding: 64px;
+}
+img{
+    padding: 24px;
+}
+h5{
+    margin-bottom: 16px;
+}
+h1{
+    margin-bottom: 20px;
+}
+p{
+    margin-bottom: 16px;
+}
+.active{
+    background-color: #786eff;
+    color: #fff;
+}
