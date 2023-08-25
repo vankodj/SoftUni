@@ -1,0 +1,16 @@
+@media screen and (max-width: 600px) {
+    
+.hero img {
+   display: none;
+  
+}
+#home {
+    text-align: center;
+}
+.navbar{
+    justify-content: center;
+}
+.navbar-light .navbar-brand{
+    margin: 0px;
+}
+}
