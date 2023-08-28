@@ -1,81 +1,88 @@
 package bg.softuni.pathfinder.model.dto;
 
+import jakarta.validation.constraints.*;
+
 public class UserRegistrationDTO {
 
+    @NotBlank
+    @Size(min = 5, max = 20)
     private String username;
 
-    private String fullName;
+    @NotNull
+    @Size(min = 5, max = 20)
+    private String fullname;
 
+    @NotNull
+    @Email
     private String email;
 
+    @Min(0)
+    @Max(90)
     private int age;
 
+    @NotNull
+    @Size(min = 5, max = 20)
     private String password;
 
+    @NotNull
+    @Size(min = 5, max = 20)
     private String confirmPassword;
 
-    public UserRegistrationDTO() {
-    }
+    public UserRegistrationDTO() {}
 
     public String getUsername() {
         return username;
     }
 
-    public UserRegistrationDTO setUsername(String username) {
+    public void setUsername(String username) {
         this.username = username;
-        return this;
     }
 
-    public String getFullName() {
-        return fullName;
+    public String getFullname() {
+        return fullname;
     }
 
-    public UserRegistrationDTO setFullName(String fullName) {
-        this.fullName = fullName;
-        return this;
+    public void setFullname(String fullname) {
+        this.fullname = fullname;
     }
 
     public String getEmail() {
         return email;
     }
 
-    public UserRegistrationDTO setEmail(String email) {
+    public void setEmail(String email) {
         this.email = email;
-        return this;
     }
 
     public int getAge() {
         return age;
     }
 
-    public UserRegistrationDTO setAge(int age) {
+    public void setAge(int age) {
         this.age = age;
-        return this;
     }
 
     public String getPassword() {
         return password;
     }
 
-    public UserRegistrationDTO setPassword(String password) {
+    public void setPassword(String password) {
         this.password = password;
-        return this;
     }
 
     public String getConfirmPassword() {
         return confirmPassword;
     }
 
-    public UserRegistrationDTO setConfirmPassword(String confirmPassword) {
+    public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
-        return this;
     }
 
     @Override
     public String toString() {
         return "UserRegistrationDTO{" +
                 "username='" + username + '\'' +
-                ", fullName='" + fullName + '\'' +
+                ", fullName='" + fullname + '\'' +
                 ", email='" + email + '\'' +
                 ", age=" + age +
                 ", password='" + password + '\'' +
