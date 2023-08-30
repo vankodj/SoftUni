@@ -5,6 +5,8 @@ import bg.softuni.battleships.model.entities.User;
 import bg.softuni.battleships.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class AuthService {
 
@@ -18,7 +20,15 @@ public class AuthService {
         if (!userRegistrationDTO.getPassword().equals(userRegistrationDTO.getConfirmPassword())) {
             return false;
         }
+        Optional<User> byEmail = this.userRepository.findByEmail(userRegistrationDTO.getEmail());
+        if (byEmail.isPresent()){
+            return false;
+        }
+        Optional<User> byUsername = this.userRepository.findByUsername(userRegistrationDTO.getUsername());
 
+        if (byUsername.isPresent()){
+            return false;
+        }
 
         User user = new User(
                 userRegistrationDTO.getUsername(),
