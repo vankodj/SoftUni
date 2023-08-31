@@ -1,5 +1,6 @@
 package bg.softuni.battleships.web;
 
+import bg.softuni.battleships.model.dtos.LoginDTO;
 import bg.softuni.battleships.model.dtos.UserRegistrationDTO;
 import bg.softuni.battleships.services.AuthService;
 import jakarta.validation.Valid;
@@ -20,30 +21,60 @@ public class AuthController {
     }
 
     @ModelAttribute("userRegistrationDTO")
-    public UserRegistrationDTO initRegistrationDTO(){
+    public UserRegistrationDTO initRegistrationDTO() {
         return new UserRegistrationDTO();
     }
 
+    @ModelAttribute("loginDTO")
+    public LoginDTO loginDTO() {
+        return new LoginDTO();
+    }
+
     @GetMapping("/register")
-    public String register(){
+    public String register() {
         return "register";
     }
 
     @PostMapping("/register")
     public String register(@Valid UserRegistrationDTO userRegistrationDTO
-            ,BindingResult bindingResult
-            ,RedirectAttributes redirectAttributes){
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !authService.register(userRegistrationDTO)){
-            redirectAttributes.addFlashAttribute("userRegistrationDTO",userRegistrationDTO);
+        if (bindingResult.hasErrors() || !authService.register(userRegistrationDTO)) {
+            redirectAttributes.addFlashAttribute("userRegistrationDTO", userRegistrationDTO);
             redirectAttributes.addFlashAttribute
                     ("org.springframework.validation.BindingResult.userRegistrationDTO"
-                            ,bindingResult);
+                            , bindingResult);
 
             return "redirect:/register";
         }
 
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/login")
+    public String login() {
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String login(@Valid LoginDTO loginDTO
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute
+                    ("org.springframework.validation.BindingResult.loginDTO"
+                            , bindingResult);
+            return "redirect:/login";
+        }
+
+        if (!this.authService.login(loginDTO)){
+            redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
+            redirectAttributes.addFlashAttribute("badCredentials",true);
+            return "redirect:/login";
+        }
+        return "redirect:/home";
     }
 }
