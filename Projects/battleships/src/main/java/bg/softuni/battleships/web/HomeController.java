@@ -10,7 +10,8 @@ public class HomeController {
     public String loggedInIndex(){
         return "home";
     }
-    @GetMapping("/")
+
+    @GetMapping("/index")
     public String loggedOutIndex(){
         return "index";
     }

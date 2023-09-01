@@ -27,6 +27,7 @@ public class Ship extends BaseEntity{
     @ManyToOne
     private User user;
 
+
     public String getName() {
         return name;
     }
