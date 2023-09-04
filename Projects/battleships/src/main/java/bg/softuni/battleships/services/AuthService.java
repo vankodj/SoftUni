@@ -53,4 +53,11 @@ public class AuthService {
   return true;
   }
 
+    public long getLoggedUserId() {
+        return this.userSession.getId();
+    }
+
+    public boolean isLoggedIn() {
+        return this.userSession.getId() >0;
+    }
 }
