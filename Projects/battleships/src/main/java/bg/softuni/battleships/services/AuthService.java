@@ -44,7 +44,9 @@ public class AuthService {
     }
 
   public boolean login(LoginDTO loginDTO){
-        Optional<User> user = this.userRepository.findByUsernameAndPassword(loginDTO.getUsername(), loginDTO.getPassword());
+        Optional<User> user = this.userRepository
+                .findByUsernameAndPassword(loginDTO
+                .getUsername(), loginDTO.getPassword());
 
   if (user.isEmpty()){
       return false;

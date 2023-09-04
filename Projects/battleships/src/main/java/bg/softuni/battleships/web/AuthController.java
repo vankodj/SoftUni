@@ -3,6 +3,7 @@ package bg.softuni.battleships.web;
 import bg.softuni.battleships.model.dtos.LoginDTO;
 import bg.softuni.battleships.model.dtos.UserRegistrationDTO;
 import bg.softuni.battleships.services.AuthService;
+import bg.softuni.battleships.session.LoggedUser;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
@@ -15,9 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
 
     private AuthService authService;
+    private LoggedUser loggedUser;
 
-    public AuthController(AuthService authService) {
+    public AuthController(AuthService authService, LoggedUser loggedUser) {
         this.authService = authService;
+        this.loggedUser = loggedUser;
     }
 
     @ModelAttribute("userRegistrationDTO")
@@ -40,7 +43,7 @@ public class AuthController {
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes) {
 
-        if (bindingResult.hasErrors() || !authService.register(userRegistrationDTO)) {
+        if (bindingResult.hasErrors() || ! authService.register(userRegistrationDTO)) {
             redirectAttributes.addFlashAttribute("userRegistrationDTO", userRegistrationDTO);
             redirectAttributes.addFlashAttribute
                     ("org.springframework.validation.BindingResult.userRegistrationDTO"
@@ -77,4 +80,6 @@ public class AuthController {
         }
         return "redirect:/home";
     }
+   
+
 }

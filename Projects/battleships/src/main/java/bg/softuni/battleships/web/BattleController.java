@@ -4,7 +4,9 @@ import bg.softuni.battleships.model.dtos.StartBattleDTO;
 import bg.softuni.battleships.services.BattleService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
 public class BattleController {
@@ -17,11 +19,17 @@ public class BattleController {
     }
 
     @PostMapping("/battle")
-    public String battle(@Valid StartBattleDTO startBattleDTO){
-        System.out.println(startBattleDTO.getAttackerId() + " " + startBattleDTO.getDefenderId());
-    this.battleService.attack(startBattleDTO){
-
+    public String battle(@Valid StartBattleDTO startBattleDTO
+            , BindingResult bindingResult
+            , RedirectAttributes redirectAttributes) {
+        if (bindingResult.hasErrors()) {
+            redirectAttributes.addFlashAttribute("startBattleDTO", startBattleDTO);
+            redirectAttributes.addFlashAttribute
+                    ("org.springframework.validation.BindingResult.startBattleDTO"
+                            , bindingResult);
+            return "redirect:/home";
         }
+        this.battleService.attack(startBattleDTO);
         return "redirect:/home";
     }
 }
