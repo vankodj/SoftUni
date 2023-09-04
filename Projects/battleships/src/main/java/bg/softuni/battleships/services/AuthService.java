@@ -62,4 +62,8 @@ public class AuthService {
     public boolean isLoggedIn() {
         return this.userSession.getId() >0;
     }
+
+    public void logout() {
+        this.userSession.logout();
+    }
 }

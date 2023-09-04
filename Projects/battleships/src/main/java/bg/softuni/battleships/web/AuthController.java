@@ -16,11 +16,11 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 public class AuthController {
 
     private AuthService authService;
-    private LoggedUser loggedUser;
+
 
     public AuthController(AuthService authService, LoggedUser loggedUser) {
         this.authService = authService;
-        this.loggedUser = loggedUser;
+
     }
 
     @ModelAttribute("userRegistrationDTO")
@@ -35,6 +35,10 @@ public class AuthController {
 
     @GetMapping("/register")
     public String register() {
+        if (authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
         return "register";
     }
 
@@ -42,6 +46,10 @@ public class AuthController {
     public String register(@Valid UserRegistrationDTO userRegistrationDTO
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes) {
+
+        if (authService.isLoggedIn()){
+            return "redirect:/home";
+        }
 
         if (bindingResult.hasErrors() || ! authService.register(userRegistrationDTO)) {
             redirectAttributes.addFlashAttribute("userRegistrationDTO", userRegistrationDTO);
@@ -58,6 +66,11 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login() {
+
+        if (authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
         return "login";
     }
 
@@ -65,6 +78,11 @@ public class AuthController {
     public String login(@Valid LoginDTO loginDTO
             , BindingResult bindingResult
             , RedirectAttributes redirectAttributes) {
+
+        if (authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
         if (bindingResult.hasErrors()) {
             redirectAttributes.addFlashAttribute("loginDTO", loginDTO);
             redirectAttributes.addFlashAttribute
@@ -80,6 +98,15 @@ public class AuthController {
         }
         return "redirect:/home";
     }
-   
+    @GetMapping("/logout")
+    public String logout(){
+
+        if (!authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
+        this.authService.logout();
+        return "redirect:/";
+    }
 
 }

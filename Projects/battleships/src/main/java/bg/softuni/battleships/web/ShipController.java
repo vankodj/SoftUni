@@ -1,6 +1,7 @@
 package bg.softuni.battleships.web;
 
 import bg.softuni.battleships.model.dtos.CreateShipDTO;
+import bg.softuni.battleships.services.AuthService;
 import bg.softuni.battleships.services.ShipService;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -13,10 +14,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 @Controller
 public class ShipController {
 
-    private ShipService shipService;
+    private final ShipService shipService;
+    private final AuthService authService;
 
-    public ShipController(ShipService shipService) {
+    public ShipController(ShipService shipService, AuthService authService) {
         this.shipService = shipService;
+        this.authService = authService;
     }
 
     @ModelAttribute("createShipDTO")
@@ -26,6 +29,10 @@ public class ShipController {
 
     @GetMapping("/ships/add")
     public String ships(){
+        if (!authService.isLoggedIn()){
+            return "redirect:/home";
+        }
+
         return "ship-add";
     }
 
