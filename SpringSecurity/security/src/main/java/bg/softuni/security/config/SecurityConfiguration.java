@@ -18,7 +18,7 @@ public class SecurityConfiguration {
 
     @Bean
     public PasswordEncoder passwordEncoder() {
-        return new Pbkdf2PasswordEncoder("",256,256,2);
+        return new Pbkdf2PasswordEncoder("",8,8,8);
     }
 
 //    enable or disable static resources and login,home,registration pages
