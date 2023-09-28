@@ -6,6 +6,7 @@ import bg.softuni.security.model.entity.UserRoleEntity;
 import bg.softuni.security.model.enums.UserRoleEnum;
 import bg.softuni.security.repository.UserRepository;
 import bg.softuni.security.repository.UserRoleRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -23,12 +24,18 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     private final UserDetailsService userDetailsService;
+    private final String adminPass;
 
-    public UserService(UserRepository userRepository, UserRoleRepository userRoleRepository, PasswordEncoder passwordEncoder, UserDetailsService userDetailsService) {
+    public UserService(UserRepository userRepository
+            , UserRoleRepository userRoleRepository
+            , PasswordEncoder passwordEncoder
+            , UserDetailsService userDetailsService
+            ,@Value("@{app.default.admin.password}") String adminPass) {
         this.userRepository = userRepository;
         this.userRoleRepository = userRoleRepository;
         this.passwordEncoder = passwordEncoder;
         this.userDetailsService = userDetailsService;
+        this.adminPass = adminPass;
     }
 
     public void init() {
@@ -50,7 +57,7 @@ public class UserService {
                 .setFirstName("Admin")
                 .setLastName("Adminov")
                 .setEmail("admin@example.com")
-                .setPassword(passwordEncoder.encode("master"));
+                .setPassword(passwordEncoder.encode(adminPass));
         userRepository.save(admin);
 
     }
@@ -61,7 +68,7 @@ public class UserService {
                 .setFirstName("Moderator")
                 .setLastName("Moderatorov")
                 .setEmail("moderator@example.com")
-                .setPassword(passwordEncoder.encode("master"));
+                .setPassword(passwordEncoder.encode(adminPass));
 
         userRepository.save(moderator);
 
@@ -73,7 +80,7 @@ public class UserService {
                 .setFirstName("User")
                 .setLastName("Userov")
                 .setEmail("user@example.com")
-                .setPassword(passwordEncoder.encode("master"));
+                .setPassword(passwordEncoder.encode(adminPass));
 
         userRepository.save(user);
 
