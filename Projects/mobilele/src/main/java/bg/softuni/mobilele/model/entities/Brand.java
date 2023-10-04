@@ -8,7 +8,7 @@ import java.util.List;
 @Table(name = "brands")
 public class Brand extends BaseEntity{
 
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String name;
 
     @OneToMany(mappedBy = "brand",

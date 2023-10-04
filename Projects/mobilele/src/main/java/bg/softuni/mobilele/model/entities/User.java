@@ -15,7 +15,7 @@ public class User extends BaseEntity{
 
     private String firstName;
 
-    private String lastname;
+    private String lastName;
 
     private boolean isActive;
 
@@ -51,12 +51,12 @@ public class User extends BaseEntity{
         return this;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getLastName() {
+        return lastName;
     }
 
-    public User setLastname(String lastname) {
-        this.lastname = lastname;
+    public User setLastName(String lastName) {
+        this.lastName = lastName;
         return this;
     }
 
@@ -93,7 +93,7 @@ public class User extends BaseEntity{
                 "email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", firstName='" + firstName + '\'' +
-                ", lastname='" + lastname + '\'' +
+                ", lastname='" + lastName + '\'' +
                 ", isActive=" + isActive +
                 ", imageUrl='" + imageUrl + '\'' +
                 ", userRoles=" + userRoles +
