@@ -1,5 +1,7 @@
 package com.resellerapp.controller;
 
+import com.resellerapp.model.binding.UserLoginBindingModel;
+import com.resellerapp.model.binding.UserRegisterBindingModel;
 import com.resellerapp.model.dto.UserLoginDTO;
 import com.resellerapp.service.UserService;
 import org.springframework.stereotype.Controller;
@@ -21,7 +23,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public String login(UserLoginDTO loginDTO){
+    public String login(UserLoginBindingModel userLoginBindingModel) {
+        this.userService.login(userLoginBindingModel);
+
         return "home";
     }
 
@@ -29,5 +33,9 @@ public class UserController {
     public String register(){
         return "register";
     }
-
+    @PostMapping("/register")
+    public String register(UserRegisterBindingModel userRegisterBindingModel){
+        userService.register(userRegisterBindingModel);
+        return "redirect:/login";
+    }
 }
