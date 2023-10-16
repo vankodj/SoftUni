@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 public interface UserService {
 
-    public void register(UserRegisterBindingModel userRegisterBindingModel);
+    public boolean register(UserRegisterBindingModel userRegisterBindingModel);
 
-    void login(UserLoginBindingModel userLoginBindingModel);
+    boolean login(UserLoginBindingModel userLoginBindingModel);
 }

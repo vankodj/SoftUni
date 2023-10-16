@@ -24,9 +24,10 @@ public class UserController {
 
     @PostMapping("/login")
     public String login(UserLoginBindingModel userLoginBindingModel) {
-        this.userService.login(userLoginBindingModel);
+       boolean isLogged = this.userService.login(userLoginBindingModel);
+        String view = isLogged ? "redirect:/home" : "login";
+        return view;
 
-        return "home";
     }
 
     @GetMapping("/register")
@@ -35,7 +36,8 @@ public class UserController {
     }
     @PostMapping("/register")
     public String register(UserRegisterBindingModel userRegisterBindingModel){
-        userService.register(userRegisterBindingModel);
-        return "redirect:/login";
+        boolean isRegister = userService.register(userRegisterBindingModel);
+       String view = isRegister ? "redirect:/login" : "register";
+        return view;
     }
 }

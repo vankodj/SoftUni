@@ -1,5 +1,6 @@
 package com.resellerapp.service.impl;
 
+import com.resellerapp.config.LoggedUser;
 import com.resellerapp.model.binding.UserLoginBindingModel;
 import com.resellerapp.model.binding.UserRegisterBindingModel;
 import com.resellerapp.model.entity.User;
@@ -15,22 +16,25 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final ModelMapper modelMapper;
 
+    private final LoggedUser loggedUser;
+
     private final PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, PasswordEncoder passwordEncoder) {
+    public UserServiceImpl(UserRepository userRepository, ModelMapper modelMapper, LoggedUser loggedUser, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
         this.modelMapper = modelMapper;
+        this.loggedUser = loggedUser;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Override
-    public void register(UserRegisterBindingModel userRegisterBindingModel) {
+    public boolean register(UserRegisterBindingModel userRegisterBindingModel) {
         if (userRegisterBindingModel==null){
-            return;
+            return false;
         }
         String username = userRegisterBindingModel.getUsername();
         if(this.userRepository.findByUsername(username).isPresent()){
-            return;
+            return false;
         };
 
         User user = new User();
@@ -38,10 +42,21 @@ public class UserServiceImpl implements UserService {
         user.setPassword(passwordEncoder.encode(userRegisterBindingModel.getPassword()));
         user.setEmail(userRegisterBindingModel.getEmail());
         userRepository.save(user);
+        return true;
     }
 
     @Override
-    public void login(UserLoginBindingModel userLoginBindingModel) {
+    public boolean login(UserLoginBindingModel userLoginBindingModel) {
+  User user = findUserByUsername(userLoginBindingModel.getUsername());
+  if (user != null && passwordEncoder.matches(userLoginBindingModel.getPassword(), user.getPassword())){
+      loggedUser.setUsername(user.getUsername());
+      loggedUser.setLoggedIn(true);
+      return true;
+  }
+        return false;
+    }
 
+    private User findUserByUsername(String username){
+        return userRepository.findByUsername(username).get();
     }
 }
