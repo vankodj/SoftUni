@@ -1,19 +1,25 @@
 package com.resellerapp.model.dto;
 
 import com.resellerapp.model.entity.ConditionNameEnum;
+import com.resellerapp.model.entity.Offer;
 
 import java.math.BigDecimal;
 
-public class MyOfferDTO {
+public class MyOfferDTO extends BoughtOffersDTO {
 
     private ConditionNameEnum condition;
 
-    private String description;
-
-    private BigDecimal price;
 
     public ConditionNameEnum getCondition() {
         return condition;
+    }
+
+    public MyOfferDTO() {
+    }
+    public MyOfferDTO(Offer offer) {
+       super(offer);
+        condition = offer.getCondition().getConditionName();
+
     }
 
     public MyOfferDTO setCondition(ConditionNameEnum condition) {
@@ -21,21 +27,5 @@ public class MyOfferDTO {
         return this;
     }
 
-    public String getDescription() {
-        return description;
-    }
 
-    public MyOfferDTO setDescription(String description) {
-        this.description = description;
-        return this;
-    }
-
-    public BigDecimal getPrice() {
-        return price;
-    }
-
-    public MyOfferDTO setPrice(BigDecimal price) {
-        this.price = price;
-        return this;
-    }
 }

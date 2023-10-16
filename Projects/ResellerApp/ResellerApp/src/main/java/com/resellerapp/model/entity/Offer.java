@@ -25,6 +25,24 @@ public class Offer extends BaseEntity{
     @ManyToOne
     private Condition condition;
 
+    public User getCreatedBy() {
+        return createdBy;
+    }
+
+    public Offer setCreatedBy(User createdBy) {
+        this.createdBy = createdBy;
+        return this;
+    }
+
+    public User getBoughtBy() {
+        return boughtBy;
+    }
+
+    public Offer setBoughtBy(User boughtBy) {
+        this.boughtBy = boughtBy;
+        return this;
+    }
+
     @ManyToOne
     private User createdBy;
 

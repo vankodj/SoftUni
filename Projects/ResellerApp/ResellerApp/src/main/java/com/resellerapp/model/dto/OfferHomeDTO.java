@@ -11,6 +11,14 @@ public class OfferHomeDTO {
 
     private long totalOtherOffers;
 
+    public OfferHomeDTO(List<MyOfferDTO> myOffers, List<BoughtOffersDTO> boughtOffers, List<OtherOffersDTO> otherOffers) {
+        this.myOffers = myOffers;
+        this.boughtOffers = boughtOffers;
+        this.allOtherOffers = otherOffers;
+        this.totalOtherOffers = otherOffers.size();
+    }
+
+
     public List<MyOfferDTO> getMyOffers() {
         return myOffers;
     }

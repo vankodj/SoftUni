@@ -1,5 +1,6 @@
 package com.resellerapp.controller;
 
+import com.resellerapp.model.dto.OfferHomeDTO;
 import com.resellerapp.service.OfferService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +22,9 @@ public String index(){
 
     @GetMapping("/home")
     public ModelAndView home(){
-
+        OfferHomeDTO offersForHomePage = offerService.getOffersForHomePage();
         ModelAndView modelAndView = new ModelAndView("home");
-        modelAndView.addObject("offerHomeDTO",);
-        return new ModelAndView("home");
+        modelAndView.addObject("offerHomeDTO",offersForHomePage);
+        return modelAndView;
     }
 }
